@@ -7,32 +7,40 @@ using namespace ariel;
 #include <algorithm>
 using namespace std;
 
+string nospaces(string input) {
+	std::erase(input, ' ');
+	std::erase(input, '\t');
+	std::erase(input, '\n');
+	std::erase(input, '\r');
+	return input;
+}
+
 TEST_CASE("Check good input - 1"){
-    CHECK(mat(13, 5, '@', '-') == "@@@@@@@@@@@@@\n"
+    CHECK(nospaces(mat(13, 5, '@', '-')) == nospaces("@@@@@@@@@@@@@\n"
 "@-----------@\n"
 "@-@@@@@@@@@-@\n"
 "@-----------@\n"
-"@@@@@@@@@@@@@");
+"@@@@@@@@@@@@@"));
 }
 
 
 TEST_CASE("Check good input - 2"){
-    CHECK(mat(9, 5, '@', '-') == "@@@@@@@@@\n"
+    CHECK(nospaces(mat(9, 5, '@', '-')) == nospaces("@@@@@@@@@\n"
 "@-------@\n"
 "@-@@@@@-@\n"
 "@-------@\n"
-"@@@@@@@@@");
+"@@@@@@@@@"));
 }
 
 
 TEST_CASE("Check good input - 3"){
-    CHECK(mat(7, 7, '@', '-') == "@@@@@@@\n"
+    CHECK(nospaces(mat(7, 7, '@', '-')) == nospaces("@@@@@@@\n"
 "@-----@\n"
 "@-@@@-@\n"
 "@-@-@-@\n"
 "@-@@@-@\n"
 "@-----@\n"
-"@@@@@@@");
+"@@@@@@@"));
 }
 
 
@@ -42,11 +50,11 @@ TEST_CASE("Bad input - 1") {
 
 
 TEST_CASE("Good input -13") {
-    CHECK(mat(9, 5, '@', '@') == "@@@@@@@@@\n"
+    CHECK(nospaces(mat(9, 5, '@', '@')) == nospaces("@@@@@@@@@\n"
 "@@@@@@@@@\n"
 "@@@@@@@@@\n"
 "@@@@@@@@@\n"
-"@@@@@@@@@");
+"@@@@@@@@@"));
 }
 
 
@@ -54,31 +62,22 @@ TEST_CASE("Bad input - 2") {
     CHECK_THROWS(mat(12, 6, '$', '%'));
 }
 
-TEST_CASE("Wrong Answer - 1") {
-       CHECK_THROWS(mat(9, 5, '@', '-') == "@@@@@@@@@\n"
-"@---@---@\n"
-"@-@@@@@-@\n"
-"@-------@\n"
-"@@@@@@@@@");
-}
-
-
 
 TEST_CASE("Check good input - 4"){
-    CHECK(mat(5, 5, '@', '-') == "@@@@@\n"
+    CHECK(nospaces(mat(5, 5, '@', '-')) == nospaces("@@@@@\n"
 "@---@\n"
 "@-@-@\n"
 "@---@\n"
-"@@@@@");
+"@@@@@"));
 }
 
 
 TEST_CASE("Check good input - 5"){
-    CHECK(mat(5, 5, '@', '+') == "@@@@@\n"
+    CHECK(nospaces(mat(5, 5, '@', '+')) == nospaces("@@@@@\n"
 "@+++@\n"
 "@+@+@\n"
 "@+++@\n"
-"@@@@@");
+"@@@@@"));
 }
 
 
@@ -88,14 +87,14 @@ TEST_CASE("Check good input - 6"){
 
 
 TEST_CASE("Check good input - 7"){
-    CHECK(mat(3, 3, '@', '-') == "@@@\n"
+    CHECK(nospaces(mat(3, 3, '@', '-')) == nospaces("@@@\n"
 "@-@\n"
-"@@@\n");
+"@@@\n"));
 }
 
 
 TEST_CASE("Check good input - 8"){
-    CHECK(mat(13, 9, '@', '-') == "@@@@@@@@@@@@@\n"
+    CHECK(nospaces(mat(13, 9, '@', '-')) == nospaces("@@@@@@@@@@@@@\n"
 "@-----------@\n"
 "@-@@@@@@@@@-@\n"
 "@-@-------@-@\n"
@@ -103,7 +102,7 @@ TEST_CASE("Check good input - 8"){
 "@-@-------@-@\n"
 "@-@@@@@@@@@-@\n"
 "@-----------@\n"
-"@@@@@@@@@@@@@");
+"@@@@@@@@@@@@@"));
 }
 
 
@@ -132,54 +131,40 @@ TEST_CASE("Must be a char type symbol"){
     CHECK_THROWS(mat(5, 3, '@', 7));
 }
 
+TEST_CASE("Must be a char type symbol"){
+    CHECK_THROWS(mat(5, 6, '(', '%'));
+}
 
-TEST_CASE("Wrong Answer - 2") {
-       CHECK_THROWS(mat(9, 7, '@', '-') == "@@@@@@@@@\n"
-"@-------@\n"
-"@-@@@@@-@\n"
-"@-@---@-@\n"
-"@@@@@@@@@\n"
-"@-------@\n"
-"@-@@@@@-@");
+TEST_CASE("Must be a char type symbol"){
+    CHECK_THROWS(mat(5, 3, 3, 9));
 }
 
 
+
 TEST_CASE("Check good input - 9"){
-    CHECK(mat(7, 3, '#', '-') == "!!!!!!!\n"
+    CHECK(nospaces(mat(7, 3, '#', '-')) == nospaces("!!!!!!!\n"
 "!-----!\n"
-"!!!!!!!");
+"!!!!!!!"));
 }
 
 
 TEST_CASE("Check good input - 10"){
-    CHECK(mat(3, 5, '@', '+') == "@@@\n"
+    CHECK(nospaces(mat(3, 5, '@', '+')) == nospaces("@@@\n"
     "@+@\n"
     "@+@\n"
     "@+@\n"
-    "@@@");
+    "@@@"));
 }
 
 
 TEST_CASE("Check good input - 11"){
-    CHECK(mat(5, 7, '!', '-') == "!!!!!\n"
+    CHECK(nospaces(mat(5, 7, '!', '-')) == nospaces("!!!!!\n"
     "!---!\n"
     "!-!-!\n"
     "!-!-!\n"
     "!-!-!\n"
     "!---!\n"
-    "!!!!!");
+    "!!!!!"));
 }
 
-
-TEST_CASE("Check good input - 12"){
-    CHECK(mat(5, 9, '!', '-') == "!!!!!\n"
-    "!---!\n"
-    "!-!-!\n"
-    "!-!-!\n"
-ִ    "!-!-!\n"
-    "!-!-!\n"
-    "!-!-!\n"
-    "!---!\n"
-    "!!!!!");
-}
 
