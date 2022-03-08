@@ -1,9 +1,6 @@
 #!make -f
 
-# CXX=clang++-1300.0.29.30
 CXX=clang++-9 
-# CXX=clang++
-
 CXXFLAGS=-std=c++2a -Werror
 
 HEADERS=mat.hpp

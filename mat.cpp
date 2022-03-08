@@ -12,7 +12,7 @@ std::string ariel::mat(int row, int col, char sym1, char sym2){
 }
 
 
-int main(){
-    cout << ariel::mat(12, 5, '@', '-') << endl; 
-    return 0;
-}
+// int main(){
+//     cout << ariel::mat(12, 5, '@', '-') << endl; 
+//     return 0;
+// }

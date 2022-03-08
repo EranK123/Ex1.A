@@ -4,13 +4,12 @@
  * Author: Tal Zichlinsky
  * Since : 2022-01
  */
-// #include "mat.cpp"
+
 #include "mat.hpp"
+
 #include <iostream>
 #include <stdexcept>
 using namespace std;
-
-
 
 int main() {
 	cout << ariel::mat(9, 7, '@', '-') << endl;

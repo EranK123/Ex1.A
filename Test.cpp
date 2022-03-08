@@ -41,8 +41,12 @@ TEST_CASE("Bad input - 1") {
 }
 
 
-TEST_CASE("Must contain 2 different symbols") {
-    CHECK_THROWS(mat(9, 5, '$', '$'));
+TEST_CASE("Good input -13") {
+    CHECK(mat(9, 5, '@', '@') == "@@@@@@@@@\n"
+"@@@@@@@@@\n"
+"@@@@@@@@@\n"
+"@@@@@@@@@\n"
+"@@@@@@@@@");
 }
 
 
@@ -127,7 +131,6 @@ TEST_CASE("Must have symbols"){
 TEST_CASE("Must be a char type symbol"){
     CHECK_THROWS(mat(5, 3, '@', 7));
 }
-
 
 
 TEST_CASE("Wrong Answer - 2") {
