@@ -16,12 +16,12 @@ std::string ariel::mat(int col, int row, char sym1, char sym2){
 }
 
 char** build_mat(int col, int row, char sym1, char sym2){
-    if(col % 2 == 0 || row % 2 == 0){
-        return NULL;
-    }
-    if(sym1 > 46 || sym1 < 33 || sym2 > 46 || sym2 < 33){
-        return NULL;
-    }
+    // if(col % 2 == 0 || row % 2 == 0){
+    //     return NULL;
+    // }
+    // if(sym1 > 46 || sym1 < 33 || sym2 > 46 || sym2 < 33){
+    //     return NULL;
+    // }
     char** mat = new char*[row];
     for (int i = 0; i < row; i++){
         mat[i] = new char[col];
@@ -42,21 +42,35 @@ char** build_mat(int col, int row, char sym1, char sym2){
         break;
     }
     row_idx++;      
-    for(int j = row_idx; j < row - 1; j++){
+    for(int j = row_idx; j < row - 1; j++){ // left column
         mat[j][i] = c;
+        if(count == temp_row * temp_col){
+        break;
+    }
         count++;    
     }
 
     i = col - 1;
-    for(int j = row_idx; j < row - 1; j++){
+    for(int j = row_idx; j < row - 1; j++){ // right column
         mat[j][i] = c;
+        cout << "56 : " <<  count << endl;
+        if(count == temp_row * temp_col){
+        break;
+    }
         count++;
     }
+     
     i = row - 1;
     for(int j = start_index; j < col; j++){
         mat[i][j] = c;
+        cout << "63 : " <<  count << endl;
+        if(count == temp_row * temp_col){
+        break;
+    }
         count++;
     }
+    
+     
     row--; 
     col--;
     start_index++; 
@@ -91,6 +105,6 @@ void delete_mat(char** mat, int size){
 
 
 int main(){
-    cout << ariel::mat(9,7, '@', '-') << endl; 
+    cout << ariel::mat(5, 15, '@', '-') << endl; 
     return 0;
 }
